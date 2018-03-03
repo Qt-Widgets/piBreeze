@@ -1,0 +1,24 @@
+piBreeze - LightWeight file manager for R-Pi
+
+Features
+ - Fast startup and browsing
+ - File association support
+ - Categorized IconView and Details View
+ - A slick autoclosing SideBar
+ - Drag and drop support
+ - Automount and autoupdate devices list
+ - Plugin System Support
+ - SingleApplication mode fro resource sharing
+ - BreadCrumbs Navigation Bar
+
+A. Common
+
+A. Core
+	a.
+
+Note:
+	✍ - Work in progress
+	□ - Work to be started
+	✓ - Work Completed
+	✗ - Not working on this
+	◐ - Partial Support

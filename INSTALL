@@ -1,0 +1,55 @@
+Installation Instructions for NewBreeze v3.0.0
+==============================================
+
+1. Preparation
+==============
+  a] Dependencies for PiBreeze
+     There are only few dependencies to build PiBreeze: Qt5 (qtbase5-dev, qtbase5-dev-bin, xdg-utils, encfs)
+
+     Type the following command (on Debian and Debian based systems) to install the above dependencies (with root previleges)
+
+		apt-get install qtbase5-dev qtbase5-dev-bin xdg-utils
+
+  b] Dependencies for PiBreeze Plugins
+     The following dependencies are required to build PiBreeze Plugins
+
+     1] Qt4/Qt5 Modules
+        a] QtWebKit (libqt5webkit5-dev) (Qt5 <= 5.4)
+        b] QtWebEngine (qtwebengine5-dev) (Qt5 >= 5.5)
+        c] QScintilla (libqt5scintilla2-dev or libqscintilla2-qt5-dev)
+     2] libpoppler-qt5 (libpoppler-qt5-dev)
+     3] libdjvulibre-dev (libdjvulibre-dev)
+
+     Type the following command (on Debian and Debian based systems) to install the above dependencies (with root previleges)
+
+		apt-get install libqt5webkit5-dev libqscintilla2-qt5-dev libpoppler-qt5-dev libdjvulibre-dev
+
+  c] Installation locations
+     You need to set the locations where you want to install newbreeze, and its plugins. By default, the prefix is /usr.
+     The pibreeze app is installed at /usr/bin/, libpibreeze.so at /usr/lib/pibreeze, plugins at /usr/lib/pibreeze/plugins.
+     These are set in the respective .pro files. You'll have to edit the individual .pro files.
+
+     NOTE: Please make note that we use RPATH to locate libpibreeze.so. Setting improper values to $PREFIX, or in QMAKE_RPATHDIR
+     will result in pibreeze crashing out with error.
+
+2. Building
+===========
+  a] Preparing the Makefile
+     In the terminal, type
+
+         qmake -qt5
+
+  b] Building
+     In the terminal, type
+
+         make -j4
+
+     Feel free to replace 4 in 'make -j4' with the number of cpu cores you have.
+
+3. Installation
+===============
+     In the terminal, type
+
+         sudo make install
+
+     This will install PiBreeze, the plugins and all the include files in the location set during Stage 1

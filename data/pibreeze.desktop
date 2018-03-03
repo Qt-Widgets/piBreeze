@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=PiBreeze
+GenericName=PiBreeze File Manager
+Comment=Browse the file system and manage the files
+Exec=pibreeze3 %u
+TryExec=pibreeze
+Icon=pibreeze
+Type=Application
+Categories=FileManager;Utility;Core;Qt;System;FileTools
+StartupNotify=true
+Terminal=false
+MimeType=inode/directory

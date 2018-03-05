@@ -207,6 +207,10 @@ void PBDeviceManager::pollDevices() {
 		if ( virtualFS.contains( entry->mnt_type ) )
 			continue;
 
+		/* AppImage fix */
+		if ( QString( entry->mnt_type ).contains( "AppImage" ) )
+			continue;
+
 		PBDeviceInfo info( new PBDeviceInfoPrivate( entry->mnt_fsname, entry->mnt_dir, entry->mnt_type ) );
 		devicesList[ entry->mnt_dir ] = info;
 	};

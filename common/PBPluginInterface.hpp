@@ -49,6 +49,7 @@ class PLUGIN_DLLSPEC PBPluginInterface {
 			PreviewInterface,							// File Preview Enhancement (To be integrated from PBPreviewInterface)	> Peek (Ctrl+Return)
 			SideBarInterface,							// Alternative/Enhancement for sidebar									> No actions
 			InfoBarInterface,							// Alternative for infobar												> No actions
+			TerminalInterface,							// Specialized Terminal plugin											> Open terminal (F4)
 			RenameInterface,							// Alternative/Enhancement for Rename									> Rename (F2)
 			MimeTypeInterface,							// Special handling of specific mimetypes								> 'Actions' Menu
 			CreateInterface,							// Creation of new types of nodes										> 'New' Menu

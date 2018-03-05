@@ -1162,6 +1162,21 @@ void PBFolderView::selectAll() {
 
 void PBFolderView::openTerminal() {
 
+	PBPluginManager *plMgr = PBPluginManager::instance();
+
+	QString node = fsModel->currentDir();
+	PluginList pList;
+
+	pList << plMgr->plugins( PBPluginInterface::TerminalInterface, PBPluginInterface::Enhancement, PBPluginInterface::Dir, "inode/directory" );
+
+	if ( pList.count() ) {
+		PBPluginInterface *iface = pList.at( 0 );
+		iface->actionTrigger( PBPluginInterface::TerminalInterface, QString(), QStringList() << node );
+
+		qDebug( "Opening inbuilt term plugin at %s... [DONE]", node.toLocal8Bit().data() );
+		return;
+	}
+
 	QStringList commandList = getTerminal();
 	QString command = commandList.takeFirst();
 
@@ -1169,11 +1184,11 @@ void PBFolderView::openTerminal() {
 		commandList[ 1 ] = QString( "cd %1 && /bin/bash" ).arg( termFormatString( fsModel->currentDir() ) );
 
 	else {
-		commandList[ 1 ] = fsModel->currentDir();
+		commandList[ 1 ] = node;
 		commandList[ 3 ] = "/bin/bash";
 	}
 
-	qDebug( "Opening console at %s... %s", fsModel->currentDir().toLocal8Bit().data(), ( QProcess::startDetached( command, commandList ) ? "[DONE]" : "[FAILED]" ) );
+	qDebug( "Opening console at %s... %s", node.toLocal8Bit().data(), ( QProcess::startDetached( command, commandList ) ? "[DONE]" : "[FAILED]" ) );
 };
 
 void PBFolderView::openTerminalIn() {
@@ -1181,6 +1196,18 @@ void PBFolderView::openTerminalIn() {
 	QStringList commandList = getTerminal();
 	QString command = commandList.takeFirst();
 	QString folder = QFileInfo( fsModel->nodeInfo( getSelection()[ 0 ] ) ).absoluteFilePath();
+
+	PBPluginManager *plMgr = PBPluginManager::instance();
+
+	PluginList pList = plMgr->plugins( PBPluginInterface::TerminalInterface, PBPluginInterface::Enhancement, PBPluginInterface::Dir, "inode/directory" );
+
+	if ( pList.count() ) {
+		PBPluginInterface *iface = pList.at( 0 );
+		iface->actionTrigger( PBPluginInterface::TerminalInterface, QString(), QStringList() << folder );
+
+		qDebug( "Opening inbuilt term plugin at %s... [DONE]", folder.toLocal8Bit().data() );
+		return;
+	}
 
 	if ( command == QString( "xterm" ) )
 		commandList[ 1 ] = QString( "cd %1 && /bin/bash" ).arg( termFormatString( folder ) );

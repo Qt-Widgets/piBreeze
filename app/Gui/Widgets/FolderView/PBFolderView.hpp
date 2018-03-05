@@ -22,7 +22,6 @@
 #include "PBIconManager.hpp"
 #include "PBIconView.hpp"
 #include "PBIOProcess.hpp"
-#include "PBLogger.hpp"
 #include "PBMessageDialog.hpp"
 #include "PBNewNodeDialog.hpp"
 #include "PBPluginManager.hpp"
